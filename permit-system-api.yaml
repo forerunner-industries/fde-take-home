@@ -1,0 +1,286 @@
+openapi: 3.0.3
+info:
+  title: Permit Management System API
+  description: |
+    This API provides access to the permit management system data. 
+    It includes intentional issues such as rate limiting and occasional errors
+    to simulate real-world integration challenges.
+  version: 1.0.0
+  contact:
+    name: Forerunner Support
+    email: support@withforerunner.com
+
+servers:
+  - url: https://api.permitmanagement.example.com/v1
+    description: Permit Management System API Server
+
+components:
+  schemas:
+    Permit:
+      type: object
+      required:
+        - permitId
+        - propertyAddress
+        - status
+        - dateSubmitted
+      properties:
+        permitId:
+          type: string
+          description: Unique identifier for the permit (UUID format)
+          example: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+        propertyAddress:
+          type: object
+          properties:
+            street:
+              type: string
+              example: "7 Gravelly Point Rd"
+            city:
+              type: string
+              example: "Highlands"
+            state:
+              type: string
+              example: "NJ"
+            zip:
+              type: string
+              example: "07732"
+        status:
+          type: string
+          enum: [Pending, In Progress, Complete, Rejected, On Hold]
+          example: "Complete"
+        dateSubmitted:
+          type: string
+          format: date
+          example: "2025-03-27"
+        improvementAmount:
+          type: number
+          description: Dollar value of the improvement
+          example: 1600
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              documentId:
+                type: string
+                example: "DOC-2025-0456"
+              filename:
+                type: string
+                example: "Gravelly_FL_FD_Permit_SIGNED_3.25.pdf"
+              documentType:
+                type: string
+                example: "Floodplain Development Permit"
+              uploadDate:
+                type: string
+                format: date
+                example: "2025-03-27"
+              fileUrl:
+                type: string
+                format: url
+                example: "https://permits.example.com/files/Gravelly_FL_FD_Permit_SIGNED_3.25.pdf"
+    SimplifiedPermit:
+      type: object
+      required:
+        - permitId
+        - status
+      properties:
+        permitId:
+          type: string
+          description: Unique identifier for the permit (UUID format)
+          example: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+        status:
+          type: string
+          enum: [Pending, In Progress, Complete, Rejected, On Hold]
+          example: "Complete"
+    PaginatedPermits:
+      type: object
+      required:
+        - data
+        - meta
+        - links
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/SimplifiedPermit"
+        meta:
+          type: object
+          required:
+            - currentPage
+            - totalPages
+            - perPage
+            - total
+          properties:
+            currentPage:
+              type: integer
+              example: 1
+            totalPages:
+              type: integer
+              example: 3
+            perPage:
+              type: integer
+              example: 5
+            total:
+              type: integer
+              example: 12
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: "/permits?page=1&perPage=5"
+            next:
+              type: string
+              example: "/permits?page=2&perPage=5"
+            prev:
+              type: string
+              nullable: true
+              example: null
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "rateLimitExceeded"
+        message:
+          type: string
+          example: "Rate limit exceeded. Only 5 requests per second allowed."
+
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Page number for pagination
+      required: false
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+
+    perPageParam:
+      name: perPage
+      in: query
+      description: Number of items per page (maximum 5)
+      required: false
+      schema:
+        type: integer
+        default: 5
+        minimum: 1
+        maximum: 5
+
+    submittedAfterParam:
+      name: submittedAfter
+      in: query
+      description: Filter permits submitted after this date (format YYYY-MM-DD)
+      required: false
+      schema:
+        type: string
+        format: date
+
+    submittedBeforeParam:
+      name: submittedBefore
+      in: query
+      description: Filter permits submitted before this date (format YYYY-MM-DD)
+      required: false
+      schema:
+        type: string
+        format: date
+
+    statusParam:
+      name: status
+      in: query
+      description: Filter permits by status
+      required: false
+      schema:
+        type: string
+        enum: [Pending, In Progress, Complete, Rejected, On Hold]
+
+  responses:
+    TooManyRequests:
+      description: Too many requests - rate limit exceeded (more than 5 requests per second)
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+    InternalServerError:
+      description: Internal server error - random occurrence to simulate real-world conditions
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+paths:
+  /permits:
+    get:
+      summary: List all permits with pagination and filtering
+      description: |
+        Returns a paginated list of permits.
+
+        **Note:** This endpoint has the following simulated issues:
+        1. Rate limiting: Limited to 5 requests per second
+        2. Random server errors: 1% chance of a 500 error
+        3. Pagination: Maximum of 5 items per page
+      parameters:
+        - $ref: "#/components/parameters/pageParam"
+        - $ref: "#/components/parameters/perPageParam"
+        - $ref: "#/components/parameters/submittedAfterParam"
+        - $ref: "#/components/parameters/submittedBeforeParam"
+        - $ref: "#/components/parameters/statusParam"
+      responses:
+        "200":
+          description: A paginated list of permits
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedPermits"
+        "400":
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /permits/{permitId}:
+    get:
+      summary: Get a specific permit by ID
+      description: |
+        Returns details for a specific permit.
+
+        **Note:** This endpoint has the following simulated issues:
+        1. Rate limiting: Limited to 5 requests per second
+        2. Random server errors: 1% chance of a 500 error
+      parameters:
+        - name: permitId
+          in: path
+          required: true
+          description: The unique identifier for the permit (UUID format)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Details of a specific permit
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Permit"
+        "400":
+          description: Bad request - invalid permit ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Permit not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
