@@ -43,7 +43,7 @@ components:
               example: "07732"
         status:
           type: string
-          enum: [Pending, In Progress, Complete, Rejected, On Hold]
+          enum: [Complete, In Progress, Rejected]
           example: "Complete"
         dateSubmitted:
           type: string
@@ -65,7 +65,7 @@ components:
           example: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
         status:
           type: string
-          enum: [Pending, In Progress, Complete, Rejected, On Hold]
+          enum: [Complete, In Progress, Rejected]
           example: "Complete"
     PaginatedPermits:
       type: object

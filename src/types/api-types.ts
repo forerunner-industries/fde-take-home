@@ -3,12 +3,12 @@
  * Do not make direct changes to the file.
  */
 
+
 export interface paths {
   "/permits": {
     /**
      * List all permits with pagination and filtering
      * @description Returns a paginated list of permits.
-     *
      */
     get: {
       parameters: {
@@ -42,7 +42,6 @@ export interface paths {
     /**
      * Get a specific permit by ID
      * @description Returns details for a specific permit.
-     *
      */
     get: {
       parameters: {
@@ -101,7 +100,7 @@ export interface components {
        * @example Complete
        * @enum {string}
        */
-      status: "Pending" | "In Progress" | "Complete" | "Rejected" | "On Hold";
+      status: "Complete" | "In Progress" | "Rejected";
       /**
        * Format: date
        * @example 2025-03-27
@@ -123,7 +122,7 @@ export interface components {
        * @example Complete
        * @enum {string}
        */
-      status: "Pending" | "In Progress" | "Complete" | "Rejected" | "On Hold";
+      status: "Complete" | "In Progress" | "Rejected";
     };
     PaginatedPermits: {
       data: components["schemas"]["SimplifiedPermit"][];
@@ -177,10 +176,7 @@ export interface components {
     /** @description Filter permits submitted before this date (format YYYY-MM-DD) */
     submittedBeforeParam?: string;
     /** @description Filter permits by status */
-    statusParam?:
-      | "Complete"
-      | "In Progress"
-      | "Rejected";
+    statusParam?: "Complete" | "In Progress" | "Rejected";
   };
   requestBodies: never;
   headers: never;

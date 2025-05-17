@@ -8,6 +8,27 @@ This is a simple Express server that simulates a third-party permit management s
 - Pagination with filtering capabilities
 - Simulated real-world integration challenges including rate limiting and occasional errors
 
+## Running with npm
+
+Install dependencies and build the TypeScript source:
+
+```bash
+npm install
+npm run build
+```
+
+Start the compiled server:
+
+```bash
+npm start
+```
+
+For development with automatic reloads, use:
+
+```bash
+npm run dev
+```
+
 ## Running with Docker
 
 ```bash
