@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
+import { z } from "zod";
 import morgan from "morgan";
 import {
   ErrorResponse,
@@ -25,6 +26,7 @@ const loadPermits = (): Permit[] => {
   const parsedData = JSON.parse(data);
   return validatePermits(parsedData);
 };
+
 
 const requestTimestamps: number[] = [];
 const RATE_LIMIT = 5;
@@ -167,6 +169,7 @@ app.get(
     res.json(permit);
   },
 );
+
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error(err);

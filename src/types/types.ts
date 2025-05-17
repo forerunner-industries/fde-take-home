@@ -8,13 +8,6 @@ export const PropertyAddressSchema = z.object({
   zip: z.string(),
 });
 
-export const DocumentSchema = z.object({
-  documentId: z.string(),
-  filename: z.string(),
-  documentType: z.string(),
-  uploadDate: z.string(),
-  fileUrl: z.string(),
-});
 
 export const PermitStatusSchema = z.enum([
   "Pending",
@@ -30,7 +23,6 @@ export const PermitSchema = z.object({
   status: PermitStatusSchema,
   dateSubmitted: z.string(),
   improvementAmount: z.number(),
-  documents: z.array(DocumentSchema),
 });
 
 export const PermitQuerySchema = z.object({
@@ -60,7 +52,6 @@ export const PermitQuerySchema = z.object({
 });
 
 export type PropertyAddress = z.infer<typeof PropertyAddressSchema>;
-export type Document = z.infer<typeof DocumentSchema>;
 export type Permit = z.infer<typeof PermitSchema>;
 export type PermitQuery = z.infer<typeof PermitQuerySchema>;
 

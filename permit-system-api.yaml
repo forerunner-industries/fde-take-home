@@ -2,9 +2,7 @@ openapi: 3.0.3
 info:
   title: Permit Management System API
   description: |
-    This API provides access to the permit management system data. 
-    It includes intentional issues such as rate limiting and occasional errors
-    to simulate real-world integration challenges.
+    This API provides access to the permit management system data.
   version: 1.0.0
   contact:
     name: Forerunner Support
@@ -55,28 +53,6 @@ components:
           type: number
           description: Dollar value of the improvement
           example: 1600
-        documents:
-          type: array
-          items:
-            type: object
-            properties:
-              documentId:
-                type: string
-                example: "DOC-2025-0456"
-              filename:
-                type: string
-                example: "Gravelly_FL_FD_Permit_SIGNED_3.25.pdf"
-              documentType:
-                type: string
-                example: "Floodplain Development Permit"
-              uploadDate:
-                type: string
-                format: date
-                example: "2025-03-27"
-              fileUrl:
-                type: string
-                format: url
-                example: "https://permits.example.com/files/Gravelly_FL_FD_Permit_SIGNED_3.25.pdf"
     SimplifiedPermit:
       type: object
       required:
@@ -193,7 +169,7 @@ components:
       required: false
       schema:
         type: string
-        enum: [Pending, In Progress, Complete, Rejected, On Hold]
+        enum: [Complete, In Progress, Rejected]
 
   responses:
     TooManyRequests:
@@ -216,11 +192,6 @@ paths:
       summary: List all permits with pagination and filtering
       description: |
         Returns a paginated list of permits.
-
-        **Note:** This endpoint has the following simulated issues:
-        1. Rate limiting: Limited to 5 requests per second
-        2. Random server errors: 1% chance of a 500 error
-        3. Pagination: Maximum of 5 items per page
       parameters:
         - $ref: "#/components/parameters/pageParam"
         - $ref: "#/components/parameters/perPageParam"
@@ -245,15 +216,12 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
 
+
   /permits/{permitId}:
     get:
       summary: Get a specific permit by ID
       description: |
         Returns details for a specific permit.
-
-        **Note:** This endpoint has the following simulated issues:
-        1. Rate limiting: Limited to 5 requests per second
-        2. Random server errors: 1% chance of a 500 error
       parameters:
         - name: permitId
           in: path

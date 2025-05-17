@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { ErrorResponse, PaginatedResponse, Permit } from "../src/types/types";
 import { makeRequest } from "./utils";
 
@@ -92,16 +92,6 @@ describe("Permit API", () => {
         status: "Complete",
         dateSubmitted: "2025-03-27",
         improvementAmount: 1600,
-        documents: [
-          {
-            documentId: "DOC-2025-0101",
-            documentType: "Floodplain Development Permit",
-            filename: "Gravelly_FL_FD_Permit_SIGNED_3.25.pdf",
-            fileUrl:
-              "https://permits.example.com/files/Gravelly_FL_FD_Permit_SIGNED_3.25.pdf",
-            uploadDate: "2025-03-27",
-          },
-        ],
       });
     });
 
@@ -122,14 +112,14 @@ describe("Permit API", () => {
 
   describe("Filtering", () => {
     it("filters permits by status", async () => {
-      const status = "Pending";
+      const status = "In Progress";
       const response = await makeRequest<PaginatedResponse>(
         `/v1/permits?status=${status}`,
       );
 
       expect(response.statusCode).toBe(200);
 
-      expect(response.data.data.length).toBe(2);
+      expect(response.data.data.length).toBe(5);
       const allHaveCorrectStatus = response.data.data.every(
         (permit) => permit.status === status,
       );
@@ -205,4 +195,5 @@ describe("Permit API", () => {
       expect(allBeforeMidpoint).toBe(true);
     });
   });
+
 });

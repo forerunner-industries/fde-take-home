@@ -9,16 +9,7 @@
     },
     "status": "Complete",
     "dateSubmitted": "2025-03-27",
-    "improvementAmount": 1600,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0101",
-        "filename": "Gravelly_FL_FD_Permit_SIGNED_3.25.pdf",
-        "documentType": "Floodplain Development Permit",
-        "uploadDate": "2025-03-27",
-        "fileUrl": "https://permits.example.com/files/Gravelly_FL_FD_Permit_SIGNED_3.25.pdf"
-      }
-    ]
+    "improvementAmount": 1600
   },
   {
     "permitId": "550e8400-e29b-41d4-a716-446655440000",
@@ -30,16 +21,7 @@
     },
     "status": "Complete",
     "dateSubmitted": "2025-04-17",
-    "improvementAmount": 2900,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0102",
-        "filename": "Washington_FD_Permit_SIGNED.pdf",
-        "documentType": "Floodplain Development Permit",
-        "uploadDate": "2025-04-17",
-        "fileUrl": "https://permits.example.com/files/Washington_FD_Permit_SIGNED.pdf"
-      }
-    ]
+    "improvementAmount": 2900
   },
   {
     "permitId": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
@@ -49,10 +31,9 @@
       "state": "NJ",
       "zip": "07732"
     },
-    "status": "Pending",
+    "status": "In Progress",
     "dateSubmitted": "2025-05-01",
-    "improvementAmount": 5000,
-    "documents": []
+    "improvementAmount": 5000
   },
   {
     "permitId": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
@@ -64,16 +45,7 @@
     },
     "status": "In Progress",
     "dateSubmitted": "2025-04-28",
-    "improvementAmount": 3200,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0104",
-        "filename": "Bay_Street_Application.pdf",
-        "documentType": "Permit Application",
-        "uploadDate": "2025-04-28",
-        "fileUrl": "https://permits.example.com/files/Bay_Street_Application.pdf"
-      }
-    ]
+    "improvementAmount": 3200
   },
   {
     "permitId": "6ba7b812-9dad-11d1-80b4-00c04fd430c8",
@@ -85,23 +57,7 @@
     },
     "status": "Complete",
     "dateSubmitted": "2025-02-14",
-    "improvementAmount": 8700,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0105",
-        "filename": "Valley_Road_Permit.pdf",
-        "documentType": "Floodplain Development Permit",
-        "uploadDate": "2025-02-14",
-        "fileUrl": "https://permits.example.com/files/Valley_Road_Permit.pdf"
-      },
-      {
-        "documentId": "DOC-2025-0106",
-        "filename": "Valley_Road_Elevation_Certificate.pdf",
-        "documentType": "Elevation Certificate",
-        "uploadDate": "2025-02-16",
-        "fileUrl": "https://permits.example.com/files/Valley_Road_Elevation_Certificate.pdf"
-      }
-    ]
+    "improvementAmount": 8700
   },
   {
     "permitId": "6ba7b813-9dad-11d1-80b4-00c04fd430c8",
@@ -113,16 +69,7 @@
     },
     "status": "Rejected",
     "dateSubmitted": "2025-03-15",
-    "improvementAmount": 12000,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0107",
-        "filename": "Ocean_View_Application.pdf",
-        "documentType": "Permit Application",
-        "uploadDate": "2025-03-15",
-        "fileUrl": "https://permits.example.com/files/Ocean_View_Application.pdf"
-      }
-    ]
+    "improvementAmount": 12000
   },
   {
     "permitId": "6ba7b814-9dad-11d1-80b4-00c04fd430c8",
@@ -132,18 +79,9 @@
       "state": "NJ",
       "zip": "07732"
     },
-    "status": "On Hold",
+    "status": "In Progress",
     "dateSubmitted": "2025-04-02",
-    "improvementAmount": 4500,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0108",
-        "filename": "Harbor_Circle_Application.pdf",
-        "documentType": "Permit Application",
-        "uploadDate": "2025-04-02",
-        "fileUrl": "https://permits.example.com/files/Harbor_Circle_Application.pdf"
-      }
-    ]
+    "improvementAmount": 4500
   },
   {
     "permitId": "6ba7b815-9dad-11d1-80b4-00c04fd430c8",
@@ -155,16 +93,7 @@
     },
     "status": "Complete",
     "dateSubmitted": "2025-01-10",
-    "improvementAmount": 6200,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0109",
-        "filename": "Marina_Drive_Permit.pdf",
-        "documentType": "Floodplain Development Permit",
-        "uploadDate": "2025-01-10",
-        "fileUrl": "https://permits.example.com/files/Marina_Drive_Permit.pdf"
-      }
-    ]
+    "improvementAmount": 6200
   },
   {
     "permitId": "6ba7b816-9dad-11d1-80b4-00c04fd430c8",
@@ -176,16 +105,7 @@
     },
     "status": "In Progress",
     "dateSubmitted": "2025-05-05",
-    "improvementAmount": 9800,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0110",
-        "filename": "Lighthouse_Road_Application.pdf",
-        "documentType": "Permit Application",
-        "uploadDate": "2025-05-05",
-        "fileUrl": "https://permits.example.com/files/Lighthouse_Road_Application.pdf"
-      }
-    ]
+    "improvementAmount": 9800
   },
   {
     "permitId": "6ba7b817-9dad-11d1-80b4-00c04fd430c8",
@@ -195,18 +115,9 @@
       "state": "NJ",
       "zip": "07732"
     },
-    "status": "Pending",
+    "status": "In Progress",
     "dateSubmitted": "2025-05-12",
-    "improvementAmount": 7300,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0111",
-        "filename": "Shore_Drive_Application.pdf",
-        "documentType": "Permit Application",
-        "uploadDate": "2025-05-12",
-        "fileUrl": "https://permits.example.com/files/Shore_Drive_Application.pdf"
-      }
-    ]
+    "improvementAmount": 7300
   },
   {
     "permitId": "6ba7b818-9dad-11d1-80b4-00c04fd430c8",
@@ -218,16 +129,7 @@
     },
     "status": "Complete",
     "dateSubmitted": "2025-03-05",
-    "improvementAmount": 11500,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0112",
-        "filename": "Coastal_Highway_Permit.pdf",
-        "documentType": "Floodplain Development Permit",
-        "uploadDate": "2025-03-05",
-        "fileUrl": "https://permits.example.com/files/Coastal_Highway_Permit.pdf"
-      }
-    ]
+    "improvementAmount": 11500
   },
   {
     "permitId": "6ba7b819-9dad-11d1-80b4-00c04fd430c8",
@@ -239,15 +141,6 @@
     },
     "status": "In Progress",
     "dateSubmitted": "2025-04-10",
-    "improvementAmount": 15000,
-    "documents": [
-      {
-        "documentId": "DOC-2025-0113",
-        "filename": "Sandy_Beach_Application.pdf",
-        "documentType": "Permit Application",
-        "uploadDate": "2025-04-10",
-        "fileUrl": "https://permits.example.com/files/Sandy_Beach_Application.pdf"
-      }
-    ]
+    "improvementAmount": 15000
   }
 ]

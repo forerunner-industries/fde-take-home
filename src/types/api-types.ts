@@ -9,10 +9,6 @@ export interface paths {
      * List all permits with pagination and filtering
      * @description Returns a paginated list of permits.
      *
-     * **Note:** This endpoint has the following simulated issues:
-     * 1. Rate limiting: Limited to 5 requests per second
-     * 2. Random server errors: 1% chance of a 500 error
-     * 3. Pagination: Maximum of 5 items per page
      */
     get: {
       parameters: {
@@ -47,9 +43,6 @@ export interface paths {
      * Get a specific permit by ID
      * @description Returns details for a specific permit.
      *
-     * **Note:** This endpoint has the following simulated issues:
-     * 1. Rate limiting: Limited to 5 requests per second
-     * 2. Random server errors: 1% chance of a 500 error
      */
     get: {
       parameters: {
@@ -119,27 +112,21 @@ export interface components {
        * @example 1600
        */
       improvementAmount?: number;
-      documents?: {
-        /** @example DOC-2025-0456 */
-        documentId?: string;
-        /** @example Gravelly_FL_FD_Permit_SIGNED_3.25.pdf */
-        filename?: string;
-        /** @example Floodplain Development Permit */
-        documentType?: string;
-        /**
-         * Format: date
-         * @example 2025-03-27
-         */
-        uploadDate?: string;
-        /**
-         * Format: url
-         * @example https://permits.example.com/files/Gravelly_FL_FD_Permit_SIGNED_3.25.pdf
-         */
-        fileUrl?: string;
-      }[];
+    };
+    SimplifiedPermit: {
+      /**
+       * @description Unique identifier for the permit (UUID format)
+       * @example f47ac10b-58cc-4372-a567-0e02b2c3d479
+       */
+      permitId: string;
+      /**
+       * @example Complete
+       * @enum {string}
+       */
+      status: "Pending" | "In Progress" | "Complete" | "Rejected" | "On Hold";
     };
     PaginatedPermits: {
-      data: components["schemas"]["Permit"][];
+      data: components["schemas"]["SimplifiedPermit"][];
       meta: {
         /** @example 1 */
         currentPage: number;
@@ -191,11 +178,9 @@ export interface components {
     submittedBeforeParam?: string;
     /** @description Filter permits by status */
     statusParam?:
-      | "Pending"
-      | "In Progress"
       | "Complete"
-      | "Rejected"
-      | "On Hold";
+      | "In Progress"
+      | "Rejected";
   };
   requestBodies: never;
   headers: never;
